@@ -5,17 +5,17 @@
         <h2>剑来</h2>
       </div>
       <div class="formdata">
-        <el-form ref="form" :model="form" :rules="rules">
+        <el-form ref="form" :model="user" :rules="rules">
           <el-form-item prop="username">
             <el-input
-                v-model="form.username"
+                v-model="user.userAccount"
                 clearable
                 placeholder="请输入账号"
             ></el-input>
           </el-form-item>
           <el-form-item prop="password">
             <el-input
-                v-model="form.password"
+                v-model="user.password"
                 clearable
                 placeholder="请输入密码"
                 show-password
@@ -24,10 +24,8 @@
         </el-form>
       </div>
 
-      <div class="butt">
-        <el-button type="primary"
-        >登录</el-button
-        >
+      <div class="button">
+        <el-button type="primary" @click="userLogin">登录</el-button>
         <el-button class="shou" @click="register">注册</el-button>
       </div>
     </div>
@@ -35,14 +33,16 @@
 </template>
 
 <script>
+import axios from "axios";
 
 export default {
   name: "login",
   data() {
     return {
-      form: {
+      user: {
         password: "",
-        username: "",
+        userAccount: "",
+        token: ""
       },
       checked: false,
       rules: {
@@ -58,11 +58,15 @@ export default {
     };
   },
   mounted() {
-
   },
   methods: {
-
-  },
+    userLogin(){
+      axios.post("/login", this.user).then(res =>{
+        this.user.token = res.data
+        this.$message.success("操作成功")
+      })
+    }
+  }
 };
 </script>
 
@@ -104,7 +108,7 @@ export default {
   color: #606266;
 }
 
-.butt {
+.button {
   margin-top: 10px;
   text-align: center;
 }
@@ -114,16 +118,4 @@ export default {
   color: #606266;
 }
 
-/*ui*/
-/* /deep/ .el-form-item__label {
-  font-weight: bolder;
-  font-size: 15px;
-  text-align: left;
-}
-
-/deep/ .el-button {
-  width: 100%;
-  margin-bottom: 10px;
-
-} */
 </style>

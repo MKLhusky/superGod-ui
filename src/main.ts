@@ -5,6 +5,7 @@ import App from './App.vue'
 import router from './router'
 import {ElInput, ElForm, ElButton, ElFormItem } from 'element-plus'
 import ElementUI from 'element-plus'
+import axios from "axios";
 
 const app = createApp(App)
 
@@ -16,3 +17,6 @@ app.use(ElFormItem)
 app.use(ElButton)
 
 app.mount('#app')
+
+axios.defaults.baseURL = "/api"
+axios.defaults.timeout = 5000
