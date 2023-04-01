@@ -34,6 +34,7 @@
 
 <script>
 import axios from "axios";
+import router from "@/router"
 
 export default {
   name: "login",
@@ -59,14 +60,19 @@ export default {
   },
   mounted() {
   },
+  setup(){
+  },
   methods: {
     userLogin(){
       axios.post("/login", this.user).then(res =>{
         this.user.token = res.data
         this.$message.success("操作成功")
+        //useRouter.push({path: "/DailyAttendance"})
+        router.push({path:  "/DailyAttendance"})
       })
     }
-  }
+  },
+
 };
 </script>
 
