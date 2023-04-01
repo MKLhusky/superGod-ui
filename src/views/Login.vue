@@ -65,9 +65,9 @@ export default {
   methods: {
     userLogin(){
       axios.post("/login", this.user).then(res =>{
-        this.user.token = res.data
+        this.user.token = res.data.token
         this.$message.success("操作成功")
-        //useRouter.push({path: "/DailyAttendance"})
+        window.localStorage.setItem("token", res.data.token)
         router.push({path:  "/DailyAttendance"})
       })
     }

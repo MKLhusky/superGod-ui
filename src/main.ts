@@ -18,5 +18,5 @@ app.use(ElButton)
 
 app.mount('#app')
 
-axios.defaults.baseURL = "/api"
-axios.defaults.timeout = 5000
+/*axios.defaults.baseURL = "/api"
+axios.defaults.timeout = 5000*/
