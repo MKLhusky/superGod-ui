@@ -64,10 +64,12 @@ export default {
   },
   methods: {
     userLogin(){
-      axios.post("/login", this.user).then(res =>{
-        this.user.token = res.data.token
+      axios.post("/system/login", this.user).then(res =>{
+        this.user.token = res.data
         this.$message.success("操作成功")
-        window.localStorage.setItem("token", res.data.token)
+        console.log("res.data.token")
+        console.log(res.data)
+        window.localStorage.setItem("token", res.data)
         router.push({path:  "/DailyAttendance"})
       })
     }

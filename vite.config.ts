@@ -14,10 +14,15 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '/api': {
+      '/system': {
         target: "http://localhost:8080",
         changeOrigin: true,
-        rewrite: path => path.replace(/^\/api/, '')
+        rewrite: path => path.replace(/^\/system/, '')
+      },
+      '/daily': {
+        target: "http://localhost:9999",
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/daily/, '')
       }
     }
   }
